@@ -1,15 +1,15 @@
 %global octpkg joystick
 
-Summary:	Basic matlab-like api for reading a joystick in GNU Octave 
-Name:		octave-%{octpkg}
-Version:	0.0.1
+Summary:	Provides basic joystick functions for GNU Octave
+Name:		octave-joystick
+Version:	0.0.2
 Release:	1
-Source0:	https://downloads.sourceforge.net/octave-joystick/%{octpkg}-%{version}.tar.gz
 License:	GPLv3+
 Group:		Sciences/Mathematics
-Url:		https://sourceforge.net/projects/%{octpkg}
+Url:		https://packages.octave.org/joystick/
+Source0:	https://downloads.sourceforge.net/project/octave-joystick/v%{version}/joystick-%{version}.tar.gz
 
-BuildRequires:	octave-devel >= 3.6.0
+BuildRequires:  octave-devel >= 4.0.0
 BuildRequires:	pkgconfig(sdl2)
 
 Requires:	octave(api) = %{octave_api}
@@ -21,24 +21,22 @@ Requires(postun): octave
 The Octave joystick package provides basic joystick read/write functions.
 
 %files
-%license %{octpkg}-%{version}/COPYING
-%doc %{octpkg}-%{version}/NEWS
-%dir %{octpkglibdir}
-%{octpkglibdir}/*
+%license COPYING
+%doc NEWS
 %dir %{octpkgdir}
 %{octpkgdir}/*
+%dir %{octpkglibdir}
+%{octpkglibdir}/*
+#{_metainfodir}/*.metainfo.xml
 
 #---------------------------------------------------------------------------
 
 %prep
-%autosetup -c
-
-# remove backup files
-#find . -name \*~ -delete
+%autosetup -p1 -n %{octpkg}-%{version}
 
 %build
 %set_build_flags
-%octave_pkg_build -T
+%octave_pkg_build
 
 %install
 %octave_pkg_install
