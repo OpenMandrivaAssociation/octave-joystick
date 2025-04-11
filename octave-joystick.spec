@@ -3,7 +3,7 @@
 Summary:	Provides basic joystick functions for GNU Octave
 Name:		octave-joystick
 Version:	0.0.3
-Release:	1
+Release:	2
 License:	GPLv3+
 Group:		Sciences/Mathematics
 Url:		https://packages.octave.org/joystick/
